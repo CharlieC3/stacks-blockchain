@@ -209,7 +209,7 @@ jobs:
   # Create a new release if we're building a tag
   create-release:
     runs-on: ubuntu-latest
-    if: contains(github.ref, "master")
+    if: contains(github.ref, 'master')
     needs:
       - unit-tests
       - integration-tests
