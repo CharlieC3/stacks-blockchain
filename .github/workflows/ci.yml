@@ -18,7 +18,7 @@ on:
 jobs:
   cancel-previous:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/tags/v')"
+    if: startsWith(github.ref, 'refs/tags/v') != true
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.8.0
@@ -28,7 +28,7 @@ jobs:
   # Run unit tests with code coverage
   unit-tests:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/tags/v')"
+    if: startsWith(github.ref, 'refs/tags/v') != true
     steps:
       - name: Run units tests (with coverage)
         uses: docker/build-push-action@v2
@@ -38,7 +38,7 @@ jobs:
   # Run integration tests
   integration-tests:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/tags/v')"
+    if: startsWith(github.ref, 'refs/tags/v') != true
     strategy:
       matrix:
         # Uncomment below when Atlas is live
@@ -56,7 +56,7 @@ jobs:
   #
   # Run functional tests
   # functional-tests:
-  #   if: "!startsWith(github.ref, 'refs/tags/v')"
+  #   if: startsWith(github.ref, 'refs/tags/v') != true
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Run network relay tests
@@ -67,7 +67,7 @@ jobs:
   # rustfmt checking
   rustfmt:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.ref, 'refs/tags/v')"
+    if: startsWith(github.ref, 'refs/tags/v') != true
     steps:
       - name: Run rustfmt check
         uses: docker/build-push-action@v2
