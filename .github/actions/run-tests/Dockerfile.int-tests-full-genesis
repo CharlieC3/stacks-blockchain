@@ -14,5 +14,5 @@ RUN ln -s /bitcoin-0.20.0/bin/bitcoind /bin/
 
 ENV BITCOIND_TEST 1
 
-# Large genesis test
+# Full genesis test
 RUN cargo test --release --features prod-genesis-chainstate -- --test-threads 1 --ignored neon_integrations::bitcoind_integration_test
