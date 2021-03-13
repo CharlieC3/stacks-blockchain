@@ -53,7 +53,7 @@ jobs:
         env:
           RUSTFLAGS: '-Zinstrument-coverage'
           LLVM_PROFILE_FILE: 'stacks-blockchain-%p-%m.profraw'
-      - uses: actions-rs/grcov@v0.1
+      # - uses: actions-rs/grcov@v0.1
 
   # Run integration tests
   integration-tests:
