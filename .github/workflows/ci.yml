@@ -46,13 +46,17 @@ jobs:
           override: true
           components: llvm-tools-preview
       - uses: Swatinem/rust-cache@v1
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --no-fail-fast
+      - run: cargo test --no-fail-fast -- --test-threads 2
         env:
           RUSTFLAGS: '-Zinstrument-coverage'
           LLVM_PROFILE_FILE: 'stacks-blockchain-%p-%m.profraw'
+      # - uses: actions-rs/cargo@v1
+      #   with:
+      #     command: test
+      #     args: --no-fail-fast
+      #   env:
+      #     RUSTFLAGS: '-Zinstrument-coverage'
+      #     LLVM_PROFILE_FILE: 'stacks-blockchain-%p-%m.profraw'
       # - uses: actions-rs/grcov@v0.1
 
   # Run integration tests
